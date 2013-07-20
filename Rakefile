@@ -1,7 +1,7 @@
 require "rubygems"
 require 'rake'
 require 'rake/testtask'
-require_relative 'lib/app'
+require_relative 'lib/pico_appz'
 
 task :default => :test
 
