@@ -31,7 +31,7 @@ class PicoAppz
       'caption' => 'Track daily progress towards a goal',
     },
     'Blog2Ebook' => {
-      'url' => 'http://blog2ebook.herokuapp.com/',
+      'url' => 'http://blog2ebook.picoappz.com/',
       'image' => 'img/blog2ebook.png',
       'preview_image' => 'img/blog2ebook_sm.png',
       'label' => 'Blog2Ebook',
