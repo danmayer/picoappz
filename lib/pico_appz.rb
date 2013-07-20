@@ -37,6 +37,7 @@ class PicoAppz
     Dir["./tmp/**/*.*"].each do |file|
       unless File.directory?(file)
         mimetype = `file -Ib #{file}`.gsub(/\n/,"")
+        mimetype = 'text/css' if file.match(/\.css/)
         filename = file.gsub(/\.\/tmp\//,'')
         puts "uploading #{file} to #{filename}"
         write_file(filename, File.read(file), :content_type => mimetype)

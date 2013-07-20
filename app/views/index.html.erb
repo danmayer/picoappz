@@ -1,9 +1,41 @@
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head>
-    <title><%= title %></title>
-</head>
-<body>
-  <h1>Welcome to PicoAppz</h1>
-  <p>Now hosted on Amazon S3!</p>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= (title || 'PicoAppz') %></title>
+    <link rel="stylesheet" href="http://www.picoappz.com/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/application.css">
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+
+            <a class="brand" href="/">
+             PicoAppz
+            </a>
+
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+
+            <ul class="nav pull-right">
+            </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      Welcome to PicoAppz!
+    </div>
+
+    <footer>
+      <div class="container">
+        created by <a href="http://mayerdan">Dan Mayer</a>
+      </div>
+    </footer>
+    <script src="/js/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/application.js"></script>
+  </body>
 </html>
