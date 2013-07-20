@@ -15,3 +15,8 @@ desc "Build files and upload to s3"
 task :build do
   PicoAppz.new.build
 end
+
+desc "Build files and open locally"
+task :preview do
+  PicoAppz.new.preview
+end

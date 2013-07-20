@@ -2,8 +2,10 @@
 <html>
   <head>
     <title><%= (title || 'PicoAppz') %></title>
-    <link rel="stylesheet" href="http://www.picoappz.com/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/application.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
+    <link rel="stylesheet" href="css/application.css">
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -26,7 +28,38 @@
     </div>
 
     <div class="container">
-      Welcome to PicoAppz!
+      <p>
+      PicoAppz is a collection of small apps and projects that I work on. I decided that many of my apps don't need a full domain but often need a home. PicoAppz can be that home and highlight any projects that I am currently working on.
+      </p>
+
+      <div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">&times;</a>
+          <h3 class="modal-title"></h3>
+        </div>
+        <div class="modal-body"><div class="modal-image"></div></div>
+        <div class="modal-footer">
+          <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+          <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+          <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+          <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Visit</a>
+        </div>
+      </div>
+
+      <ul id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" class="thumbnails">
+	<% data.each_pair do |key, attributes| %>
+        <li class="span4">
+          <div class="thumbnail">
+	    <a href="<%= attributes['image'] %>" title="<%= attributes['label'] %>" data-gallery="gallery" data-url="<%= attributes['url'] %>">
+              <img src="<%= attributes['preview_image'] %>" alt="<%= attributes['label'] %>">
+              <h3><%= attributes['label'] %></h3>
+              <p><%= attributes['caption'] %></p>
+	    </a>
+          </div>
+        </li>
+	<% end %>
+      </ul>
+      
     </div>
 
     <footer>
@@ -34,8 +67,10 @@
         created by <a href="http://mayerdan">Dan Mayer</a>
       </div>
     </footer>
-    <script src="/js/jquery-2.0.3.min.js" type="text/javascript"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/application.js"></script>
+    <script src="js/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/load-image.js"></script>
+    <script src="js/bootstrap-image-gallery.min.js"></script>
+    <script src="js/application.js"></script>
   </body>
 </html>
