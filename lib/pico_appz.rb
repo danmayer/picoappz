@@ -42,7 +42,7 @@ class PicoAppz
       'image' => 'img/churn.png',
       'preview_image' => 'img/churn_sm.png',
       'label' => 'Churn',
-      'caption' => 'Track chrun of files, classes, and methods in a project.',
+      'caption' => 'Track churn of files, classes, and methods in a project.',
     },
   }
 
