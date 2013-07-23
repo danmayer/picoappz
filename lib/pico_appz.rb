@@ -1,6 +1,7 @@
 require 'fog'
 require 'erubis'
 require './lib/server-files.rb'
+require './lib/grabzit.rb'
 include ServerFiles
 
 class PicoAppz
@@ -22,29 +23,34 @@ class PicoAppz
 
   private
   
-  APP_DATA = {
-    'NothingCalendar' => { 
-      'url' => 'http://nothingcalendar.com',
-      'image' => 'img/nothing_calendar.png',
-      'preview_image' => 'img/nothing_calendar_sm.png',
-      'label' => 'NothingCalendar',
-      'caption' => 'Track daily progress towards a goal',
-    },
-    'Blog2Ebook' => {
-      'url' => 'http://blog2ebook.picoappz.com/',
-      'image' => 'img/blog2ebook.png',
-      'preview_image' => 'img/blog2ebook_sm.png',
-      'label' => 'Blog2Ebook',
-      'caption' => 'Convert RSS feeds to well formatted kindle ebooks.',
-    },
-    'Churn' => {
-      'url' => 'https://github.com/danmayer/churn',
-      'image' => 'img/churn.png',
-      'preview_image' => 'img/churn_sm.png',
-      'label' => 'Churn',
-      'caption' => 'Track churn of files, classes, and methods in a project.',
-    },
-  }
+  def app_data
+    @images = nil
+    @app_data = {
+      'NothingCalendar' => { 
+        'url' => 'http://nothingcalendar.com',
+        'label' => 'NothingCalendar',
+        'caption' => 'Track daily progress towards a goal',
+      },
+      'Blog2Ebook' => {
+        'url' => 'http://blog2ebook.picoappz.com/',
+        'label' => 'Blog2Ebook',
+        'caption' => 'Convert RSS feeds to well formatted kindle ebooks.',
+      },
+      'Churn' => {
+        'url' => 'https://github.com/danmayer/churn',
+        'label' => 'Churn',
+        'caption' => 'Track churn of files, classes, and methods in a project.',
+      },
+    }
+    unless @images
+      @images = 'done'
+      @app_data.each_pair do |name, data|
+        Grabzit.get_image(data['url'], "./tmp/img/#{name}")
+        @app_data[name]['image'] = "img/#{name}-full.png"
+        @app_data[name]['preview_image'] = "img/#{name}-clipped.png"
+      end
+    end
+  end
 
   def copy_public_folder
     puts 'copying'
@@ -56,7 +62,7 @@ class PicoAppz
     Dir["./app/views/**/*.erb"].each do |file|
       puts "processing #{file}"
       template = File.read(file)
-      rendered_file = Erubis::Eruby.new(template).result({:title => "picoappz", :data => APP_DATA})
+      rendered_file = Erubis::Eruby.new(template).result({:title => "picoappz", :data => app_data})
       output_file = file.gsub(/\.erb/,'').gsub(/\/app\/views/,"/tmp")
       File.open(output_file, 'w') {|f| f.write(rendered_file) }
     end
