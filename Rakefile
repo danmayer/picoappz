@@ -1,4 +1,4 @@
-require "rubygems"
+require 'rubygems'
 require 'rake'
 require 'rake/testtask'
 require_relative 'lib/pico_appz'

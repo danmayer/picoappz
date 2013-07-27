@@ -16,10 +16,12 @@
              PicoAppz
             </a>
 
+	  <!--
             <ul class="nav">
               <li><a href="/">Home</a></li>
             </ul>
-
+	    -->
+	    
             <ul class="nav pull-right">
             </ul>
 
@@ -50,7 +52,7 @@
 	<% data.each_pair do |key, attributes| %>
         <li class="span4">
           <div class="thumbnail">
-	    <a href="<%= attributes['image'] %>" title="<%= attributes['label'] %>" data-gallery="gallery" data-url="<%= attributes['url'] %>">
+	    <a href="<%= attributes['image'] %>" title="<%= attributes['label'] %>" data-gallery="gallery" data-url="<%= attributes['url'] %>" class="thumbnail-header">
               <img src="<%= attributes['preview_image'] %>" alt="<%= attributes['label'] %>">
               <h3><%= attributes['label'] %></h3>
               <p><%= attributes['caption'] %></p>
@@ -59,13 +61,53 @@
           </div>
         </li>
 	<% end %>
+
+        <% if gh_data %>
+        <li class="span4 github-stats">
+          <div class="thumbnail">
+	    <a href="img/GitHub-Mark-120px-plus.png" title="Dan Mayer's GitHub" data-gallery="gallery" data-url="<%= gh_data['profile_url'] %>" class="thumbnail-header">
+              <img src="img/GitHub-Mark-120px-plus.png" alt="GitHub Mark">
+              <h4 class="gh-title">Code on GitHub</h4>
+	    </a>
+            <p>
+	    <ul class="left-list">
+	      <li>
+                <a href="<%= gh_data['public_repos_url'] %>">public repos
+	        <span class="badge badge-info">
+	          <%= gh_data['public_repos'] %>
+                </span>
+                </a>
+	      </li>
+	      <li>
+                <a href="<%= gh_data['followers_url'] %>">
+                follows
+	        <span class="badge badge-info"><%= gh_data['followers'] %></span>
+	        </a>
+	      </li>
+	      <li>
+                starred
+	        <span class="badge badge-info"><%= gh_data['starred'] %></span>
+	      </li>
+	      <li>
+	        current streak
+                <span class="badge badge-info"><%= gh_data['current_streak'] %></span>
+	      </li>
+            </ul>
+	      </p>
+	        <p>visit:
+                  <a href="<%= gh_data['profile_url'] %>">Dan Mayer's GitHub</a>
+                </p>
+          </div>
+        </li>
+	<% end %>
+	
       </ul>
       
     </div>
 
     <footer>
       <div class="container">
-        created by <a href="http://mayerdan">Dan Mayer</a>
+	built by <a href="http://mayerdan.com">Dan Mayer</a>, source code and issues on <a href="https://github.com/danmayer/picoappz">github</a>
       </div>
     </footer>
     <script src="js/jquery-2.0.3.min.js" type="text/javascript"></script>

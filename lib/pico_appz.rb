@@ -1,5 +1,7 @@
 require 'fog'
 require 'erubis'
+require 'json'
+require 'restclient'
 require './lib/server-files.rb'
 require './lib/grabzit.rb'
 include ServerFiles
@@ -7,6 +9,8 @@ include ServerFiles
 class PicoAppz
 
   def initialize
+    @images = nil
+    @gh_data = nil
   end
 
   def build
@@ -23,8 +27,19 @@ class PicoAppz
 
   private
   
+  def fetch_github_data
+    @gh_data ||= begin
+                   data_url = 'http://github.fetcher.nathanherald.com/danmayer'
+                   response = RestClient.get data_url, :content_type => :json, :accept => :json
+                   JSON.parse(response)
+                 rescue
+                   puts "error fetching GH data"
+                   nil
+                 end
+    @gh_data
+  end  
+
   def app_data
-    @images = nil
     @app_data = {
       'NothingCalendar' => { 
         'url' => 'http://nothingcalendar.com',
@@ -59,11 +74,11 @@ class PicoAppz
 
   def render_templates_to_tmp
     puts 'building'
-    Dir["./app/views/**/*.erb"].each do |file|
+    Dir["./views/**/*.erb"].each do |file|
       puts "processing #{file}"
       template = File.read(file)
-      rendered_file = Erubis::Eruby.new(template).result({:title => "picoappz", :data => app_data})
-      output_file = file.gsub(/\.erb/,'').gsub(/\/app\/views/,"/tmp")
+      rendered_file = Erubis::Eruby.new(template).result({:title => "picoappz", :data => app_data, :gh_data => fetch_github_data})
+      output_file = file.gsub(/\.erb/,'').gsub(/\/views/,"/tmp")
       File.open(output_file, 'w') {|f| f.write(rendered_file) }
     end
   end

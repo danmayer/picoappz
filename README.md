@@ -9,11 +9,9 @@ Generator to build and manage the picoappz.com site. The site is just a showcase
 * Rebuild from heroku cron?
 * Rebuild when any other project hooked gets pushed
 * Pull data from other apps or a configuration file. Not sure best place to get it
-* Automatically generate and update application screen shots
-* Consistent image sizes etc.
 * Improve the look / design
-* Move blog2ebook to subdomain under picoappz
 * SSO for all shared picoAppz?
+* Only push changed files, store last modified / updated date per file or something?
 
 
 ## Contributing

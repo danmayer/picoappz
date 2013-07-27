@@ -15,3 +15,31 @@ footer{
     left: 0;
     right: 0;
 }
+
+.thumbnails {
+    text-align:center;
+}
+
+.thumbnails > li {
+    display: inline-block;
+    *display:inline; /* ie7 fix */
+    float: none; /* this is the part that makes it work */
+    vertical-align: top;
+}
+
+.thumbnail {
+    min-height:270px;
+}
+
+.thumbnails > li p {
+    text-align:left;
+}
+
+.left-list li {
+    text-align:left;
+}
+
+.gh-title {
+    margin-top:2px;
+    margin-bottom:2px;
+}
