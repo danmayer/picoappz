@@ -1,11 +1,10 @@
 PicoAppz
 ========
 
-Generator to build and manage the picoappz.com site. The site is just a showcase of projects and apps that I am working on.
+Generator to build and manage the picoappz.com site. The site is just a showcase of projects and apps that I am working on. It runs as a static site on S3 and is built either by running a rake cmd or from various web triggers such as checking in the repo or any of the related projects tied to it.
 
 ## TODO
 
-* Rebuild automatically on git push
 * Rebuild from heroku cron?
 * Rebuild when any other project hooked gets pushed
 * Pull data from other apps or a configuration file. Not sure best place to get it
