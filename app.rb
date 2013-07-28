@@ -1,9 +1,8 @@
 require 'json'
 require 'fileutils'
-#require 'rack-ssl-enforcer'
 require 'rack-flash'
+require_relative 'lib/pico_appz'
 
-#use Rack::SslEnforcer unless ENV['RACK_ENV']=='test'
 set :public_folder, File.dirname(__FILE__) + '/public'
 set :root, File.dirname(__FILE__)
 enable :logging
@@ -29,6 +28,10 @@ end
 get '/' do
   flash[:notice] = "your up and running"
   erb :index
+end
+
+post '/publish' do
+  PicoAppz.new.build
 end
 
 private

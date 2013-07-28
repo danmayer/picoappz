@@ -74,11 +74,11 @@ class PicoAppz
 
   def render_templates_to_tmp
     puts 'building'
-    Dir["./views/**/*.erb"].each do |file|
+    Dir["./lib/views/**/*.erb"].each do |file|
       puts "processing #{file}"
       template = File.read(file)
       rendered_file = Erubis::Eruby.new(template).result({:title => "picoappz", :data => app_data, :gh_data => fetch_github_data})
-      output_file = file.gsub(/\.erb/,'').gsub(/\/views/,"/tmp")
+      output_file = file.gsub(/\.erb/,'').gsub(/\/lib\/views/,"/tmp")
       File.open(output_file, 'w') {|f| f.write(rendered_file) }
     end
   end
