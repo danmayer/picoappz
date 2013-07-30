@@ -47,7 +47,7 @@ class PicoAppz
         'caption' => 'Track daily progress towards a goal',
       },
       'Blog2Ebook' => {
-        'url' => 'http://blog2ebook.picoappz.com/',
+        'url' => 'http://blog2ebook.picoappz.com',
         'label' => 'Blog2Ebook',
         'caption' => 'Convert RSS feeds to well formatted kindle ebooks.',
       },
