@@ -49,7 +49,7 @@ def forward_to_deferred_server(project, commit, options = {})
   resource.post(:signature => DEFERRED_SERVER_TOKEN,
                 :project => project,
                 :commit => commit,
-                :command => 'bundle exec build')
+                :command => 'bundle exec rake build')
 rescue RestClient::RequestTimeout
   puts "timed out during deferred-server hit"
 end
