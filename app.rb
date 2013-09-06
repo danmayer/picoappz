@@ -9,6 +9,9 @@ enable :logging
 enable :sessions
 use Rack::Flash, :sweep => true
 
+DEFERRED_SERVER_ENDPOINT = "http://git-hook-responder.herokuapp.com/"
+DEFERRED_SERVER_TOKEN    = ENV['DEFERRED_ADMIN_TOKEN']
+
 helpers do
   def protected!
     unless authorized?
