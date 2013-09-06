@@ -31,11 +31,23 @@ get '/' do
 end
 
 post '/publish' do
-  PicoAppz.new.build
+  forward_to_deferred_server('danmayer/picoappz','HEAD')
 end
 
 private
 
-def debug_env
-  puts `which ruby`
+def forward_to_deferred_server(project, commit, options = {})
+  request_timeout = options.fetch(:timeout){ 6 }
+  request_open_timeout    = options.fetch(:open_timeout){ 6 }
+  resource = RestClient::Resource.new(DEFERRED_SERVER_ENDPOINT, 
+                                      :timeout => request_timeout, 
+                                      :open_timeout => request_open_timeout)
+  
+  resource.post(:signature => DEFERRED_SERVER_TOKEN,
+                :project => project,
+                :commit => commit,
+                :command => 'bundle exec build')
+rescue RestClient::RequestTimeout
+  puts "timed out during deferred-server hit"
 end
+

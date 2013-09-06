@@ -52,7 +52,7 @@ class PicoAppz
         'caption' => 'Convert RSS feeds to well formatted kindle ebooks.',
       },
       'Churn' => {
-        'url' => 'https://github.com/danmayer/churn',
+        'url' => 'http://churn.picoappz.com',
         'label' => 'Churn',
         'caption' => 'Track churn of files, classes, and methods in a project.',
       },
