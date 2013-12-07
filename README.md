@@ -7,9 +7,10 @@ Generator to build and manage the picoappz.com site. The site is just a showcase
 
 * Rebuild from heroku cron?
 * Rebuild when any other project hooked gets pushed
-* Pull data from other apps or a configuration file. Not sure best place to get it
+* Pull data from other apps or a configuration file.
+  * Not sure best place to get it
 * Improve the look / design
-* SSO for all shared picoAppz?
+* SSO for all shared picoAppz? Current no auth
 * Only push changed files, store last modified / updated date per file or something?
 
 
